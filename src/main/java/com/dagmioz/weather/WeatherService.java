@@ -12,14 +12,18 @@ public class WeatherService {
 
     public static void main(String[] args) {
         System.out.println(String.format("WeatherService.main: %s", Arrays.toString(args)));
-        Location london = new Location();
-        london.setCity(Optional.of(args[0]).orElse("Jerusalem"));
+        Location inputLocation = new Location();
+        if (args == null || args.length == 0) {
+            inputLocation.setCity("Jerusalem");
+        } else {
+            inputLocation.setCity(args[0]);
+        }
         if (args.length > 1) {
-            london.setCountry(args[1]);
+            inputLocation.setCountry(args[1]);
         }
         SearchForCity searcher = new SearchForCity();
         try {
-            System.out.println("WeatherService.main: Weather in " + london.getCity() + ": " + searcher.runSearchForCity(london));
+            System.out.println("WeatherService.main: Weather in " + inputLocation.getCity() + ": " + searcher.runSearchForCity(inputLocation));
         } catch (Exception e) {
             e.printStackTrace();
         }
