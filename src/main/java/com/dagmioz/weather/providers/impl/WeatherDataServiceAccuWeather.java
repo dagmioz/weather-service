@@ -20,5 +20,18 @@ public class WeatherDataServiceAccuWeather implements IWeatherDataService {
 
     private final static String SERVICE_URL = "dataservice.accuweather.com/locations/v1/search?apikey=paPyuYGUKqxE6ALLMRvq7YT9XZ20b0BJ&language=en-us&q=";
 
+    WeatherData weatherData = new WeatherData();
+    Location location = new Location();
+    static ReadDataFromJson jreader = new ReadDataFromJson();
+
+    public WeatherDataServiceAccuWeather() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+    public WeatherData getWeatherData(Location location)
+            throws WeatherDataServiceException, JSONException, IOException {
+        return this.getWeatherData(new Location[]{location}).get(location);
+    }
 }
 
