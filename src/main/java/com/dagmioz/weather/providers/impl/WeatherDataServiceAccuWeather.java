@@ -36,5 +36,8 @@ public class WeatherDataServiceAccuWeather implements IWeatherDataService {
 
     public Map<Location, WeatherData> getWeatherData(Location... locations) throws WeatherDataServiceException, JSONException, IOException {
         Map<Location, WeatherData> results = new HashMap<Location, WeatherData>();
+
+        for (Location location : locations) {
+            WeatherData weatherData = new WeatherData();
 }
 
