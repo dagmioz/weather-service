@@ -33,5 +33,8 @@ public class WeatherDataServiceAccuWeather implements IWeatherDataService {
             throws WeatherDataServiceException, JSONException, IOException {
         return this.getWeatherData(new Location[]{location}).get(location);
     }
+
+    public Map<Location, WeatherData> getWeatherData(Location... locations) throws WeatherDataServiceException, JSONException, IOException {
+        Map<Location, WeatherData> results = new HashMap<Location, WeatherData>();
 }
 
