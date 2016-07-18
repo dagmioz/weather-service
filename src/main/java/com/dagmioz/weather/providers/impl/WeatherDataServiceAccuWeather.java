@@ -39,5 +39,9 @@ public class WeatherDataServiceAccuWeather implements IWeatherDataService {
 
         for (Location location : locations) {
             WeatherData weatherData = new WeatherData();
-}
+        }
+
+        JSONObject json = jreader.readJsonFromUrl(buildQueryUrl(location));
+
+    }
 
