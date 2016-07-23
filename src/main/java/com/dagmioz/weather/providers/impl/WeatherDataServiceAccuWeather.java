@@ -18,7 +18,7 @@ import org.json.JSONObject;
 
 public class WeatherDataServiceAccuWeather implements IWeatherDataService {
 
-    private final static String SERVICE_URL = "dataservice.accuweather.com/locations/v1/search?apikey=paPyuYGUKqxE6ALLMRvq7YT9XZ20b0BJ&language=en-us&q=";
+    private final static String SERVICE_URL = "http://api.wunderground.com/api/d2b185ea0a367130/conditions/q/"; //After the "q/" type the name of the city you want to search
 
     WeatherData weatherData = new WeatherData();
     Location location = new Location();
