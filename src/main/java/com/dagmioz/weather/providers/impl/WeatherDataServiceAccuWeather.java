@@ -42,13 +42,23 @@ public class WeatherDataServiceAccuWeather implements IWeatherDataService {
         }
 
         JSONObject json = jreader.readJsonFromUrl(buildQueryUrl(location));
-        if (json.get("type").toString().equalsIgnoreCase("querynotfound"))
-        {
+        if (json.get("type").toString().equalsIgnoreCase("querynotfound")) {
             weatherData.setCod(json.get("type").toString());
             weatherData.setCodMessage(json.get("description").toString());
+        } else {
+            String str = json.get("current_observation").toString();
+            JSONObject jsonStr = new JSONObject(str.substring(1, str.length() - 1));
         }
-    else
-        {
+        results.put(location, weatherData);
+        return results;
+    }
 
+    private String buildQueryUrl(Location location) {
+        if (null != location && null != location.getCountry()) {
+            return SERVICE_URL + location.getCity() + "," + location.getCountry();
         }
+        return SERVICE_URL + location.getCity();
+    }
+}
+
 
