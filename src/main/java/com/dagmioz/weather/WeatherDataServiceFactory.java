@@ -1,6 +1,7 @@
 package com.dagmioz.weather;
 
 import com.dagmioz.weather.providers.api.IWeatherDataService;
+import com.dagmioz.weather.providers.impl.WeatherDataServiceAccuWeather;
 import com.dagmioz.weather.providers.impl.WeatherDataServiceOpenWeather;
 
 public class WeatherDataServiceFactory {
@@ -20,6 +21,8 @@ public class WeatherDataServiceFactory {
         switch (providerKey) {
             case OPEN_WEATHER_MAP:
                 return new WeatherDataServiceOpenWeather();
+            case W_UNDERGROUND:
+                return new WeatherDataServiceAccuWeather();
             default:
                 break;
         }
@@ -28,6 +31,7 @@ public class WeatherDataServiceFactory {
     }
 
     public enum WeatherServiceProviders {
-        OPEN_WEATHER_MAP
+        OPEN_WEATHER_MAP,
+        W_UNDERGROUND
     }
 }

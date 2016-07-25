@@ -7,8 +7,8 @@ import org.json.JSONException;
 
 public class SearchForCity {
     public WeatherData runSearchForCity(Location loc) throws JSONException, Exception {
-        IWeatherDataService service = WeatherDataServiceFactory.getWeatherData(WeatherDataServiceFactory.WeatherServiceProviders.OPEN_WEATHER_MAP);
-
+        //IWeatherDataService service = WeatherDataServiceFactory.getWeatherData(WeatherDataServiceFactory.WeatherServiceProviders.OPEN_WEATHER_MAP);
+        IWeatherDataService service = WeatherDataServiceFactory.getWeatherData(WeatherDataServiceFactory.WeatherServiceProviders.W_UNDERGROUND);
         WeatherData data = service.getWeatherData(loc);
         return data;
 
