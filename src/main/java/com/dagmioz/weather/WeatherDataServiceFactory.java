@@ -1,7 +1,7 @@
 package com.dagmioz.weather;
 
 import com.dagmioz.weather.providers.api.IWeatherDataService;
-import com.dagmioz.weather.providers.impl.WeatherDataServiceAccuWeather;
+import com.dagmioz.weather.providers.impl.WeatherDataServiceWunderground;
 import com.dagmioz.weather.providers.impl.WeatherDataServiceOpenWeather;
 
 public class WeatherDataServiceFactory {
@@ -22,7 +22,7 @@ public class WeatherDataServiceFactory {
             case OPEN_WEATHER_MAP:
                 return new WeatherDataServiceOpenWeather();
             case W_UNDERGROUND:
-                return new WeatherDataServiceAccuWeather();
+                return new WeatherDataServiceWunderground();
             default:
                 break;
         }

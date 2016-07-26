@@ -16,7 +16,7 @@ import com.dagmioz.weather.providers.api.IWeatherDataService;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class WeatherDataServiceAccuWeather implements IWeatherDataService {
+public class WeatherDataServiceWunderground implements IWeatherDataService {
 
     private final static String SERVICE_URL = "http://api.wunderground.com/api/d2b185ea0a367130/conditions/q/"; //After the "q/" type the name of the city you want to search
 
@@ -24,7 +24,7 @@ public class WeatherDataServiceAccuWeather implements IWeatherDataService {
     Location location = new Location();
     static ReadDataFromJson jreader = new ReadDataFromJson();
 
-    public WeatherDataServiceAccuWeather() {
+    public WeatherDataServiceWunderground() {
         super();
         // TODO Auto-generated constructor stub
     }
