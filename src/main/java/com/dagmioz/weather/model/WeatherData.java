@@ -23,6 +23,11 @@ public class WeatherData implements Serializable {
     private String sunset;
     private String sunrise;
 
+    //objects declaration for Wunderground provider
+    private String type;
+
+
+
     public String getCoord1() {
         return coord1;
     }

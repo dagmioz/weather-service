@@ -42,12 +42,13 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
         }
 
         JSONObject json = jreader.readJsonFromUrl(buildQueryUrl(location));
-        if (json.get("type").toString().equalsIgnoreCase("querynotfound")) {
+            if (json.get("type").toString().equalsIgnoreCase("querynotfound")) {
             weatherData.setCod(json.get("type").toString());
             weatherData.setCodMessage(json.get("description").toString());
         } else {
             String str = json.get("current_observation").toString();
             JSONObject jsonStr = new JSONObject(str.substring(1, str.length() - 1));
+            weatherData.setWeather_general_desc(jsonStr.get("main").toString());
         }
         results.put(location, weatherData);
         return results;
