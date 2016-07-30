@@ -27,7 +27,7 @@ public class WeatherDataServiceFactory {
                 break;
         }
 
-        return null;
+        return new WeatherDataServiceOpenWeather();
     }
 
     public enum WeatherServiceProviders {

@@ -1,0 +1,108 @@
+[
+  {
+    "response": {
+      "version": "0.1",
+      "termsofService": "http://www.wunderground.com/weather/api/d/terms.html",
+      "features": {
+      },
+      "error": {
+        "type": "keynotfound",
+        "description": "this key does not exist"
+      }
+    }
+  },
+  {
+    "response": {
+      "version": "0.1",
+      "termsofService": "http://www.wunderground.com/weather/api/d/terms.html",
+      "features": {
+        "conditions": 1
+      }
+    },
+    "current_observation": {
+      "image": {
+        "url": "http://icons.wxug.com/graphics/wu2/logo_130x80.png",
+        "title": "Weather Underground",
+        "link": "http://www.wunderground.com"
+      },
+      "display_location": {
+        "full": "Netanya, Israel",
+        "city": "Netanya",
+        "state": "",
+        "state_name": "Israel",
+        "country": "IS",
+        "country_iso3166": "IL",
+        "zip": "00000",
+        "magic": "22",
+        "wmo": "40176",
+        "latitude": "32.33361053",
+        "longitude": "34.85777664",
+        "elevation": "35.00000000"
+      },
+      "observation_location": {
+        "full": "Uzi Givati Kfar-Monash, Kfar Monash, ",
+        "city": "Uzi Givati Kfar-Monash, Kfar Monash",
+        "state": "",
+        "country": "IL",
+        "country_iso3166": "IL",
+        "latitude": "32.348125",
+        "longitude": "34.911720",
+        "elevation": "59 ft"
+      },
+      "estimated": {
+      },
+      "station_id": "IKFARMON2",
+      "observation_time": "Last Updated on July 31, 12:47 AM IDT",
+      "observation_time_rfc822": "Sun, 31 Jul 2016 00:47:05 +0300",
+      "observation_epoch": "1469915225",
+      "local_time_rfc822": "Sun, 31 Jul 2016 00:55:32 +0300",
+      "local_epoch": "1469915732",
+      "local_tz_short": "IDT",
+      "local_tz_long": "Asia/Jerusalem",
+      "local_tz_offset": "+0300",
+      "weather": "Scattered Clouds",
+      "temperature_string": "79.2 F (26.2 C)",
+      "temp_f": 79.2,
+      "temp_c": 26.2,
+      "relative_humidity": "84%",
+      "wind_string": "Calm",
+      "wind_dir": "West",
+      "wind_degrees": 260,
+      "wind_mph": 0.0,
+      "wind_gust_mph": "1.0",
+      "wind_kph": 0,
+      "wind_gust_kph": "1.6",
+      "pressure_mb": "1006",
+      "pressure_in": "29.71",
+      "pressure_trend": "0",
+      "dewpoint_string": "74 F (23 C)",
+      "dewpoint_f": 74,
+      "dewpoint_c": 23,
+      "heat_index_string": "83 F (28 C)",
+      "heat_index_f": 83,
+      "heat_index_c": 28,
+      "windchill_string": "NA",
+      "windchill_f": "NA",
+      "windchill_c": "NA",
+      "feelslike_string": "83 F (28 C)",
+      "feelslike_f": "83",
+      "feelslike_c": "28",
+      "visibility_mi": "6.2",
+      "visibility_km": "10.0",
+      "solarradiation": "--",
+      "UV": "0",
+      "precip_1hr_string": "0.00 in ( 0 mm)",
+      "precip_1hr_in": "0.00",
+      "precip_1hr_metric": " 0",
+      "precip_today_string": "0.00 in (0 mm)",
+      "precip_today_in": "0.00",
+      "precip_today_metric": "0",
+      "icon": "partlycloudy",
+      "icon_url": "http://icons.wxug.com/i/c/k/nt_partlycloudy.gif",
+      "forecast_url": "http://www.wunderground.com/global/stations/40176.html",
+      "history_url": "http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=IKFARMON2",
+      "ob_url": "http://www.wunderground.com/cgi-bin/findweather/getForecast?query=32.348125,34.911720",
+      "nowcast": ""
+    }
+  }
+]
