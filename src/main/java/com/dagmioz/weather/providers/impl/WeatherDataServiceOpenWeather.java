@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.dagmioz.weather.ReadDataFromJson;
-import com.dagmioz.weather.WeatherDataServiceException;
+import com.dagmioz.weather.exceptions.WeatherDataServiceException;
+import com.dagmioz.weather.exceptions.WeatherProviderException;
 import com.dagmioz.weather.model.Location;
 import com.dagmioz.weather.model.WeatherData;
 import com.dagmioz.weather.providers.api.IWeatherDataService;
@@ -26,11 +27,11 @@ public class WeatherDataServiceOpenWeather implements IWeatherDataService {
     }
 
     public WeatherData getWeatherData(Location location)
-            throws WeatherDataServiceException, JSONException, IOException {
+            throws WeatherDataServiceException, WeatherProviderException {
         return this.getWeatherData(new Location[]{location}).get(location);
     }
 
-    public Map<Location, WeatherData> getWeatherData(Location... locations) throws WeatherDataServiceException, JSONException, IOException {
+    public Map<Location, WeatherData> getWeatherData(Location... locations) throws WeatherDataServiceException, WeatherProviderException {
         Map<Location, WeatherData> results = new HashMap<Location, WeatherData>();
 
 
