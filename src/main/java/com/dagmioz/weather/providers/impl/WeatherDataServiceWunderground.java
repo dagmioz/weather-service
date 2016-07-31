@@ -43,7 +43,7 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
 
         JSONObject json = jreader.readJsonFromUrl(buildQueryUrl(location));
             if (json.get("type").toString().equalsIgnoreCase("querynotfound")) {
-            weatherData.setCod(json.get("type").toString());
+            weatherData.setType(json.get("type").toString());
             weatherData.setCodMessage(json.get("description").toString());
         } else {
             String str = json.get("current_observation").toString();
