@@ -51,7 +51,7 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
             String message = null;
             if (hasError) {
 
-                JSONObject error = json.getJSONObject("error");
+                JSONObject error = responseJson.getJSONObject("error");
                 message = String.format("received error from provider service: \"%s\"", error.getString("description"));
             } else {
                 message = "Service didn't return data";
@@ -67,8 +67,8 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
 
     private String buildQueryUrl(Location location) {
         if (null != location && null != location.getCountry()) {
-            return SERVICE_URL + location.getCountry() + "/"+ location.getCity()+ ".json";
+            return SERVICE_URL + location.getCountry() + "/" + location.getCity() + ".json";
         }
-        return SERVICE_URL + location.getCity()+".json";
+        return SERVICE_URL + location.getCity() + ".json";
     }
 }
