@@ -16,6 +16,7 @@ import com.dagmioz.weather.model.WeatherData;
 import com.dagmioz.weather.providers.api.IWeatherDataService;
 import org.json.JSONException;
 import org.json.JSONObject;
+import sun.invoke.empty.Empty;
 
 public class WeatherDataServiceWunderground implements IWeatherDataService {
 
@@ -43,24 +44,19 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
         }
 
         JSONObject json = jreader.readJsonFromUrl(buildQueryUrl(location));
-<<<<<<< HEAD
-            if (json.get("type").toString().equalsIgnoreCase("querynotfound")) {
-            weatherData.setType(json.get("type").toString());
-            weatherData.setCodMessage(json.get("description").toString());
-=======
         JSONObject responseJson = json.getJSONObject("response");
         boolean hasError = responseJson.has("error");
         boolean doesNotHaveCurrentObservation = !responseJson.has("current_observation");
         if (hasError || doesNotHaveCurrentObservation) {
             String message = null;
             if (hasError) {
+
                 JSONObject error = json.getJSONObject("error");
                 message = String.format("received error from provider service: \"%s\"", error.getString("description"));
             } else {
                 message = "Service didn't return data";
             }
             throw new WeatherDataServiceException(message);
->>>>>>> e2c2b086994da477f0cb2dbd270d8377ac5c4ce5
         } else {
             JSONObject currentObservation = json.getJSONObject("current_observation");//use try and cache
             //weatherData.setWeather_general_desc(jsonStr.get("main").toString());
@@ -71,10 +67,8 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
 
     private String buildQueryUrl(Location location) {
         if (null != location && null != location.getCountry()) {
-            return SERVICE_URL + location.getCity() + "," + location.getCountry();
+            return SERVICE_URL + location.getCountry() + "/"+ location.getCity()+ ".json";
         }
-        return SERVICE_URL + location.getCity();
+        return SERVICE_URL + location.getCity()+".json";
     }
 }
-
-
