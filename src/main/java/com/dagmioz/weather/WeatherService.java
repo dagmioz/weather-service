@@ -1,9 +1,7 @@
 package com.dagmioz.weather;
 
 import com.dagmioz.weather.model.Location;
-import com.dagmioz.weather.providers.impl.WeatherDataServiceWunderground;
 
-import java.net.URL;
 import java.util.Arrays;
 import java.util.Optional;
 

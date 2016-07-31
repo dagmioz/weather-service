@@ -16,7 +16,6 @@ import com.dagmioz.weather.model.WeatherData;
 import com.dagmioz.weather.providers.api.IWeatherDataService;
 import org.json.JSONException;
 import org.json.JSONObject;
-import sun.invoke.empty.Empty;
 
 public class WeatherDataServiceWunderground implements IWeatherDataService {
 
@@ -55,7 +54,6 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
         if (hasError || doesNotHaveCurrentObservation) {
             String message = null;
             if (hasError) {
-
                 JSONObject error = json.getJSONObject("error");
                 message = String.format("received error from provider service: \"%s\"", error.getString("description"));
             } else {
@@ -73,9 +71,9 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
 
     private String buildQueryUrl(Location location) {
         if (null != location && null != location.getCountry()) {
-            return SERVICE_URL + location.getCountry() + "/"+ location.getCity()+ ".json";
+            return SERVICE_URL + location.getCity() + "," + location.getCountry();
         }
-        return SERVICE_URL + location.getCity()+".json";
+        return SERVICE_URL + location.getCity();
     }
 }
 
