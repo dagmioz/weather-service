@@ -41,27 +41,28 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
 
         for (Location location : locations) {
             WeatherData weatherData = new WeatherData();
-        }
+            //}
 
-        JSONObject json = jreader.readJsonFromUrl(buildQueryUrl(location));
-        JSONObject responseJson = json.getJSONObject("response");
-        boolean hasError = responseJson.has("error");
-        boolean doesNotHaveCurrentObservation = !responseJson.has("current_observation");
-        if (hasError || doesNotHaveCurrentObservation) {
-            String message = null;
-            if (hasError) {
+            JSONObject json = jreader.readJsonFromUrl(buildQueryUrl(location));
+            JSONObject responseJson = json.getJSONObject("response");
+            boolean hasError = responseJson.has("error");
+            boolean doesNotHaveCurrentObservation = !responseJson.has("current_observation");
+            if (hasError || doesNotHaveCurrentObservation) {
+                String message = null;
+                if (hasError) {
 
-                JSONObject error = responseJson.getJSONObject("error");
-                message = String.format("received error from provider service: \"%s\"", error.getString("description"));
+                    JSONObject error = responseJson.getJSONObject("error");
+                    message = String.format("received error from provider service: \"%s\"", error.getString("description"));
+                } else {
+                    message = "Service didn't return data";
+                }
+                throw new WeatherDataServiceException(message);
             } else {
-                message = "Service didn't return data";
+                JSONObject currentObservation = json.getJSONObject("current_observation");//use try and cache
+                //weatherData.setWeather_general_desc(jsonStr.get("main").toString());
             }
-            throw new WeatherDataServiceException(message);
-        } else {
-            JSONObject currentObservation = json.getJSONObject("current_observation");//use try and cache
-            //weatherData.setWeather_general_desc(jsonStr.get("main").toString());
+            results.put(location, weatherData);
         }
-        results.put(location, weatherData);
         return results;
     }
 
