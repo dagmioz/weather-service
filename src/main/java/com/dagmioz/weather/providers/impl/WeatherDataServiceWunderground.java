@@ -59,7 +59,8 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
                 throw new WeatherDataServiceException(message);
             } else {
                 JSONObject currentObservation = json.getJSONObject("current_observation");//use try and cache
-                //weatherData.setWeather_general_desc(jsonStr.get("main").toString());
+                weatherData.setCity(currentObservation.getJSONObject("display_location").get("city").toString());
+
             }
             results.put(location, weatherData);
         }
@@ -67,9 +68,9 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
     }
 
     private String buildQueryUrl(Location location) {
-        if (null != location && null != location.getCountry()) {
-            return SERVICE_URL + location.getCountry() + "/" + location.getCity() + ".json";
-        }
+      //  if (null != location && null != location.getCountry()) {
+      //      return SERVICE_URL + location.getCountry() + "/"+ location.getCity() + ".json";
+      //  }
         return SERVICE_URL + location.getCity() + ".json";
     }
 }

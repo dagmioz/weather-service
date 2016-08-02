@@ -29,6 +29,9 @@ public class WeatherData implements Serializable {
     public void setType(String type) {this.type = type;}
 
 
+
+
+
     public String getCoord1() {
         return coord1;
     }
