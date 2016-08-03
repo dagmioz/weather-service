@@ -24,14 +24,66 @@ public class WeatherData implements Serializable {
     private String sunrise;
 
     //objects declaration for Wunderground provider
-    private String type;
-    public String getType() {return type;}
-    public void setType(String type) {this.type = type;}
 
+    private String full;
+    private String latitude;
+    private String longitude;
+    private String elevation;
+    private String observation_time;
+    private String local_time_rfc822;
+    private String weather;
+    private String temp_c;
+    private String feelslike_string;
+    private String relative_humidity;
+    private String wind_kph;
 
+    public  String getFull() {
+        return full;
+    }public void   setFull(String full) {
+        this.full = full;
+    }public String getLatitude() {
+        return latitude;
+    }public void   setLatitude(String latitude) {
+        this.latitude = latitude;
+    }public String getLongitude() {
+        return longitude;
+    }public void   setLongitude(String longitude) {
+        this.longitude = longitude;
+    }public String getElevation() {
+        return elevation;
+    }public void   setElevation(String elevation) {
+        this.elevation = elevation;
+    }public String getObservation_time() {
+        return observation_time;
+    }public void   setObservation_time(String observation_time) {
+        this.observation_time = observation_time;
+    }public String getLocal_time_rfc822() {
+        return local_time_rfc822;
+    }public void   setLocal_time_rfc822(String local_time_rfc822) {
+        this.local_time_rfc822 = local_time_rfc822;
+    }public String getWeather() {
+        return weather;
+    }public void   setWeather(String weather) {
+        this.weather = weather;
+    }public String getTemp_c() {
+        return temp_c;
+    }public void   setTemp_c(String temp_c) {
+        this.temp_c = temp_c;
+    }public String getFeelslike_string() {
+        return feelslike_string;
+    }public void   setFeelslike_string(String feelslike_string) {
+        this.feelslike_string = feelslike_string;
+    }public String getRelative_humidity() {
+        return relative_humidity;
+    }public void   setRelative_humidity(String relative_humidity) {
+        this.relative_humidity = relative_humidity;
+    }public String getWind_kph() {
+        return wind_kph;
+    }public void   setWind_kph(String wind_kph) {
+        this.wind_kph = wind_kph;
+    }
 
-
-
+//for open weather map
     public String getCoord1() {
         return coord1;
     }

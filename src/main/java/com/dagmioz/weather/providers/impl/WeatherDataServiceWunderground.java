@@ -16,7 +16,6 @@ import com.dagmioz.weather.model.WeatherData;
 import com.dagmioz.weather.providers.api.IWeatherDataService;
 import org.json.JSONException;
 import org.json.JSONObject;
-import sun.invoke.empty.Empty;
 
 public class WeatherDataServiceWunderground implements IWeatherDataService {
 
@@ -45,13 +44,14 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
 
             JSONObject json = jreader.readJsonFromUrl(buildQueryUrl(location));
             JSONObject responseJson = json.getJSONObject("response");
-            boolean hasError = responseJson.has("error");
-            boolean doesNotHaveCurrentObservation = !responseJson.has("current_observation");
+            //System.out.println(json.toString());
+            //System.out.println(responseJson.toString());
+            boolean hasError = json.has("error");
+            boolean doesNotHaveCurrentObservation = !json.has("current_observation");
             if (hasError || doesNotHaveCurrentObservation) {
                 String message = null;
                 if (hasError) {
-
-                    JSONObject error = responseJson.getJSONObject("error");
+                    JSONObject error = json.getJSONObject("error");
                     message = String.format("received error from provider service: \"%s\"", error.getString("description"));
                 } else {
                     message = "Service didn't return data";
@@ -59,7 +59,12 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
                 throw new WeatherDataServiceException(message);
             } else {
                 JSONObject currentObservation = json.getJSONObject("current_observation");//use try and cache
-                weatherData.setCity(currentObservation.getJSONObject("display_location").get("city").toString());
+                weatherData.setCity(currentObservation.getJSONObject("display_location").get("full").toString());
+                weatherData.setLatitude(currentObservation.getJSONObject("observation_location").get("latitude").toString());
+                weatherData.setLongitude(currentObservation.getJSONObject("observation_location").get("longitude").toString());
+                weatherData.setElevation(currentObservation.getJSONObject("display_location").get("elevation").toString());
+                weatherData.setObservation_time(currentObservation.get("observation_time").toString());
+
 
             }
             results.put(location, weatherData);
@@ -68,9 +73,9 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
     }
 
     private String buildQueryUrl(Location location) {
-      //  if (null != location && null != location.getCountry()) {
-      //      return SERVICE_URL + location.getCountry() + "/"+ location.getCity() + ".json";
-      //  }
+        if (null != location && null != location.getCountry()) {
+            return SERVICE_URL + location.getCountry() + "/"+ location.getCity() + ".json";
+        }
         return SERVICE_URL + location.getCity() + ".json";
     }
 }
