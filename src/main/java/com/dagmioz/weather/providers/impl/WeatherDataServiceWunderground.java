@@ -55,24 +55,23 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
                 }
                 throw new WeatherDataServiceException(message);
             } else {
-                JSONObject currentObservation = json.getJSONObject("current_observation");//use try and cache
-                weatherData.setCity(currentObservation.getJSONObject("display_location").get("full").toString());
-                weatherData.setLatitude(currentObservation.getJSONObject("observation_location").get("latitude").toString());
-                weatherData.setLongitude(currentObservation.getJSONObject("observation_location").get("longitude").toString());
-                weatherData.setElevation(currentObservation.getJSONObject("display_location").get("elevation").toString());
-                weatherData.setObservation_time(currentObservation.get("observation_time").toString());
-                weatherData.setLocal_time_rfc822(currentObservation.get("local_time_rfc822").toString());
-                weatherData.setWeather(currentObservation.get("weather").toString());
-                weatherData.setTemp_c(currentObservation.get("temp_c").toString());
-                weatherData.setFeelslike_string(currentObservation.get("feelslike_string").toString());
-                weatherData.setRelative_humidity(currentObservation.get("relative_humidity").toString());
-                weatherData.setWind_kph(currentObservation.get("wind_kph").toString());
 
-
-
-
-
-
+                try {
+                    JSONObject currentObservation = json.getJSONObject("current_observation");//use try and cache
+                    weatherData.setCity(currentObservation.getJSONObject("display_location").get("full").toString());
+                    weatherData.setLatitude(currentObservation.getJSONObject("observation_location").get("latitude").toString());
+                    weatherData.setLongitude(currentObservation.getJSONObject("observation_location").get("longitude").toString());
+                    weatherData.setElevation(currentObservation.getJSONObject("display_location").get("elevation").toString());
+                    weatherData.setObservation_time(currentObservation.get("observation_time").toString());
+                    weatherData.setLocal_time_rfc822(currentObservation.get("local_time_rfc822").toString());
+                    weatherData.setWeather(currentObservation.get("weather").toString());
+                    weatherData.setTemp_c(currentObservation.get("temp_c").toString());
+                    weatherData.setFeelslike_string(currentObservation.get("feelslike_string").toString());
+                    weatherData.setRelative_humidity(currentObservation.get("relative_humidity").toString());
+                    weatherData.setWind_kph(currentObservation.get("wind_kph").toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
             results.put(location, weatherData);
         }
@@ -81,7 +80,7 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
 
     private String buildQueryUrl(Location location) {
         if (null != location && null != location.getCountry()) {
-            return SERVICE_URL + location.getCountry() + "/"+ location.getCity() + ".json";
+            return SERVICE_URL + location.getCountry() + "/" + location.getCity() + ".json";
         }
         return SERVICE_URL + location.getCity() + ".json";
     }
