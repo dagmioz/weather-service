@@ -25,7 +25,6 @@ public class WeatherData implements Serializable {
 
     //objects declaration for Wunderground provider
 
-    private String full;
     private String latitude;
     private String longitude;
     private String elevation;
@@ -37,11 +36,7 @@ public class WeatherData implements Serializable {
     private String relative_humidity;
     private String wind_kph;
 
-    public  String getFull() {
-        return full;
-    }public void   setFull(String full) {
-        this.full = full;
-    }public String getLatitude() {
+    public String getLatitude() {
         return latitude;
     }public void   setLatitude(String latitude) {
         this.latitude = latitude;

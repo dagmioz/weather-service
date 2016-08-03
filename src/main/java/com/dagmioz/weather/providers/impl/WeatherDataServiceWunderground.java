@@ -40,12 +40,9 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
 
         for (Location location : locations) {
             WeatherData weatherData = new WeatherData();
-            //}
 
             JSONObject json = jreader.readJsonFromUrl(buildQueryUrl(location));
             JSONObject responseJson = json.getJSONObject("response");
-            //System.out.println(json.toString());
-            //System.out.println(responseJson.toString());
             boolean hasError = json.has("error");
             boolean doesNotHaveCurrentObservation = !json.has("current_observation");
             if (hasError || doesNotHaveCurrentObservation) {
@@ -64,6 +61,16 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
                 weatherData.setLongitude(currentObservation.getJSONObject("observation_location").get("longitude").toString());
                 weatherData.setElevation(currentObservation.getJSONObject("display_location").get("elevation").toString());
                 weatherData.setObservation_time(currentObservation.get("observation_time").toString());
+                weatherData.setLocal_time_rfc822(currentObservation.get("local_time_rfc822").toString());
+                weatherData.setWeather(currentObservation.get("weather").toString());
+                weatherData.setTemp_c(currentObservation.get("temp_c").toString());
+                weatherData.setFeelslike_string(currentObservation.get("feelslike_string").toString());
+                weatherData.setRelative_humidity(currentObservation.get("relative_humidity").toString());
+                weatherData.setWind_kph(currentObservation.get("wind_kph").toString());
+
+
+
+
 
 
             }
