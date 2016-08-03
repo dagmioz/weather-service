@@ -70,6 +70,8 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
                     weatherData.setRelative_humidity(currentObservation.get("relative_humidity").toString());
                     weatherData.setWind_kph(currentObservation.get("wind_kph").toString());
                 } catch (JSONException e) {
+                    String message = ("unable to retrieve one or more of the json object's, please check the Wunderground API");
+                    System.out.println(message);
                     e.printStackTrace();
                 }
             }
