@@ -57,18 +57,20 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
             } else {
 
                 try {
-                    JSONObject currentObservation = json.getJSONObject("current_observation");//use try and cache
-                    weatherData.setCity(currentObservation.getJSONObject("display_location").get("full").toString());
-                    weatherData.setLatitude(currentObservation.getJSONObject("observation_location").get("latitude").toString());
-                    weatherData.setLongitude(currentObservation.getJSONObject("observation_location").get("longitude").toString());
-                    weatherData.setElevation(currentObservation.getJSONObject("display_location").get("elevation").toString());
-                    weatherData.setObservation_time(currentObservation.get("observation_time").toString());
-                    weatherData.setLocal_time_rfc822(currentObservation.get("local_time_rfc822").toString());
-                    weatherData.setWeather(currentObservation.get("weather").toString());
+                    JSONObject currentObservation = json.getJSONObject("current_observation");
+                    weatherData.setCity(currentObservation.getJSONObject("display_location").getString("full"));
+                    weatherData.setLatitude(currentObservation.getJSONObject("observation_location").getString("latitude"));
+                    weatherData.setLongitude(currentObservation.getJSONObject("observation_location").getString("longitude"));
+                    weatherData.setElevation(currentObservation.getJSONObject("display_location").getString("elevation"));
+                    weatherData.setObservation_time(currentObservation.getString("observation_time"));
+                    weatherData.setLocal_time_rfc822(currentObservation.getString("local_time_rfc822"));
+                    weatherData.setWeather(currentObservation.getString("weather"));
+                    //weatherData.setTemp_c(currentObservation.getString("temp_c")); temp_c is not a String
                     weatherData.setTemp_c(currentObservation.get("temp_c").toString());
-                    weatherData.setFeelslike_string(currentObservation.get("feelslike_string").toString());
-                    weatherData.setRelative_humidity(currentObservation.get("relative_humidity").toString());
+                    weatherData.setFeelslike_string(currentObservation.getString("feelslike_string"));
+                    weatherData.setRelative_humidity(currentObservation.getString("relative_humidity"));
                     weatherData.setWind_kph(currentObservation.get("wind_kph").toString());
+                    //weatherData.setWind_kph(currentObservation.getString("wind_kph")); wind_kph is not a String
                 } catch (JSONException e) {
                     String message = ("unable to retrieve one or more of the json object's, please check the Wunderground API");
                     System.out.println(message);
