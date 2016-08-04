@@ -65,12 +65,12 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
                     weatherData.setObservation_time(currentObservation.getString("observation_time"));
                     weatherData.setLocal_time_rfc822(currentObservation.getString("local_time_rfc822"));
                     weatherData.setWeather(currentObservation.getString("weather"));
-                    //weatherData.setTemp_c(currentObservation.getString("temp_c")); temp_c is not a String
-                    weatherData.setTemp_c(currentObservation.get("temp_c").toString());
+                    weatherData.setTemp_c(currentObservation.optString("temp_c"));
+                    //weatherData.setTemp_c(currentObservation.get("temp_c").toString());
                     weatherData.setFeelslike_string(currentObservation.getString("feelslike_string"));
                     weatherData.setRelative_humidity(currentObservation.getString("relative_humidity"));
-                    weatherData.setWind_kph(currentObservation.get("wind_kph").toString());
-                    //weatherData.setWind_kph(currentObservation.getString("wind_kph")); wind_kph is not a String
+                    //weatherData.setWind_kph(currentObservation.get("wind_kph").toString());
+                    weatherData.setWind_kph(currentObservation.optString("wind_kph"));
                 } catch (JSONException e) {
                     String message = ("unable to retrieve one or more of the json object's, please check the Wunderground API");
                     System.out.println(message);
