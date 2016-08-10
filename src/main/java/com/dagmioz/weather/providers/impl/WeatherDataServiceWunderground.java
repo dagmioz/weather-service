@@ -5,6 +5,7 @@ package com.dagmioz.weather.providers.impl;
  */
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +15,8 @@ import com.dagmioz.weather.exceptions.WeatherProviderException;
 import com.dagmioz.weather.model.Location;
 import com.dagmioz.weather.model.WeatherData;
 import com.dagmioz.weather.providers.api.IWeatherDataService;
+import com.sun.javafx.binding.StringFormatter;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -45,12 +48,24 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
             JSONObject responseJson = json.getJSONObject("response");
             boolean hasError = json.has("error");
             boolean doesNotHaveCurrentObservation = !json.has("current_observation");
+            boolean hasArrayOfCityResults = responseJson.has("results");
             if (hasError || doesNotHaveCurrentObservation) {
                 String message = null;
                 if (hasError) {
                     JSONObject error = json.getJSONObject("error");
                     message = String.format("received error from provider service: \"%s\"", error.getString("description"));
-                } else {
+                }
+                else if (hasArrayOfCityResults)
+                {
+                    JSONArray ArrayOfCityResults = json.getJSONArray("results");
+                    for(int n=0 ; n > ArrayOfCityResults.length(); n++)
+                    {
+                        JSONObject object = ArrayOfCityResults.getJSONObject(n);
+                        message = String.format("To many results for your'e search , please add country to the search \"@s\"", object.getString("country_name"));
+
+                    }
+                }
+                else {
                     message = "Service didn't return data";
                 }
                 throw new WeatherDataServiceException(message);

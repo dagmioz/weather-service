@@ -12,6 +12,7 @@ public class WeatherService {
 
     public static void main(String[] args) {
         System.out.println(String.format("WeatherService.main: %s", Arrays.toString(args)));
+        System.out.println("args are" + args);
         Location inputLocation = new Location();
         if (args == null || args.length == 0) {
             inputLocation.setCity("Jerusalem");
