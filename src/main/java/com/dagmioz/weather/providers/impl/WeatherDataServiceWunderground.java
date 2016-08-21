@@ -53,18 +53,22 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
                     message = String.format("received error from provider service: \"%s\"", error.getString("description"));
                     System.out.println(message);
                 }
-                else {
+                  //{
                     if (hasArrayOfCityResults) {
                         JSONArray arrayOfCityResults = responseJson.getJSONArray("results");
-                        for (int n = 0; n > arrayOfCityResults.length(); n++) {
-                            JSONObject object = arrayOfCityResults.getJSONObject(n);
-                            message = String.format("To many results for your'e search , please add country to the search \"@s\"", object.getString("counrty_name"));
-
+                        System.out.println("Array Size is: " + arrayOfCityResults.length());
+                        for (int n = 0; n > arrayOfCityResults.length() ; n++) {
+                            System.out.println("FirstLoop");
+                            //JSONObject object = arrayOfCityResults.getJSONObject(n).getJSONObject("country_name");
+                            //message = String.format("To many results for your'e search , please add country to the search \"@s\"", object.getString("counrty_name"));
+                            //String countryName = object.getString("country_name");
+                            //System.out.println(object);
                         }
-                    } else {
+                    }
+                    else {
                         message = "Service didn't return data";
                     }
-                }
+                //}
                 throw new WeatherDataServiceException(message);
             } else {
 
