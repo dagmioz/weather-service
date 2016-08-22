@@ -56,13 +56,17 @@ public class WeatherDataServiceWunderground implements IWeatherDataService {
                   //{
                     if (hasArrayOfCityResults) {
                         JSONArray arrayOfCityResults = responseJson.getJSONArray("results");
-                        System.out.println("Array Size is: " + arrayOfCityResults.length());
-                        for (int n = 0; n > arrayOfCityResults.length() ; n++) {
-                            System.out.println("FirstLoop");
-                            //JSONObject object = arrayOfCityResults.getJSONObject(n).getJSONObject("country_name");
-                            //message = String.format("To many results for your'e search , please add country to the search \"@s\"", object.getString("counrty_name"));
-                            //String countryName = object.getString("country_name");
-                            //System.out.println(object);
+                        System.out.println("To many results for your'e search , missing country/state :");
+                        for (int n = 0; n < arrayOfCityResults.length() ; n++) {
+                            JSONObject object = arrayOfCityResults.getJSONObject(n);
+                            if (object.getString("country_name").contains("USA")) {
+                                message = String.format("\"%s\"", object.getString("state") + "/" + object.getString("city"));
+                                System.out.println(message);
+                            }
+                            else {
+                                message = String.format("\"%s\"", object.getString("country_name") + "/" + object.getString("city"));
+                                System.out.println(message);
+                            }
                         }
                     }
                     else {
